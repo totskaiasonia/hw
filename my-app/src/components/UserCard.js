@@ -7,7 +7,7 @@ function UserCard(props) {
             <div className='user-photo'></div>
             <h3 className='user-name'>{props.name}</h3>
             <h4 className='user-username'>{props.username}</h4>
-            <Button id={props.id} showGalleryHandler={() => props.openGallery(props.id, props.name)}></Button>
+            <Button id={props.id} userCollection={props.userCollection}></Button>
         </div>
     );
 }
