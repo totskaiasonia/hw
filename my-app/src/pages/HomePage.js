@@ -1,10 +1,7 @@
 import '../App.css';
 
 
-import UserCard from '../components/UserCard';
 import UsersContainer from '../components/UsersContainer';
-import { useState } from 'react';
-import Modal from '../components/Modal';
 import ApiReader from '../controllers/apiReader';
 import UserCollection from "../controllers/userCollection.js";
 
@@ -16,7 +13,7 @@ function HomePage() {
   return (
       <div className='container'>
         <p className='page-title'>System users</p>
-        <UsersContainer users={userCollection}></UsersContainer>
+        <UsersContainer userCollection={userCollection}></UsersContainer>
       </div>
   );
 }

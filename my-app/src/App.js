@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
+
 import HomePage from './pages/HomePage';
-import GalleryPage from './pages/GalleryPage';
+import AlbumsPage from './pages/AlbumsPage';
+import PhotosPage from './pages/PhotosPage';
 
 
 function App() {
@@ -13,12 +14,15 @@ function App() {
 			element: <HomePage></HomePage>,
 		},
 		{
-			path: "/gallery/:id",
-			element: <GalleryPage></GalleryPage>,
+			path: "/albums/:id",
+			element: <AlbumsPage></AlbumsPage>,
 		},
+		{
+			path: "/photos/:albumId",
+			element: <PhotosPage></PhotosPage>
+		}
     ]);
 	return (
-
 		<RouterProvider router={router}>
 		</RouterProvider>
 	);

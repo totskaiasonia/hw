@@ -6,7 +6,11 @@ class UserCollection {
     }
 
     async getAlbums(id) {
-        return await ApiReader.get(`https://jsonplaceholder.typicode.com/albums?userId${id}`);
+        return await ApiReader.get(`https://jsonplaceholder.typicode.com/albums?userId=${id}`);
+    }
+
+    async getPhotos(id) {
+        return await ApiReader.get(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`);
     }
 }
 

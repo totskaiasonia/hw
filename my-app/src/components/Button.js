@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import { BrowserRouter, Route, Link  } from 'react-router-dom';
-
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 
 
@@ -8,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 function Button(props) {
     const navigate = useNavigate();
-    const openGallery = () => {
-        console.log("HRERERE", props.userCollection);
-        navigate(`/gallery/${props.id}`, {userCollection: props.userCollection});
+    
+    const openGallery = async () => {
+        const albums = await props.userCollection.getAlbums(props.id);
+        navigate(`/albums/${props.id}`, {state: {
+            name: props.name,
+            userCollection: props.userCollection,
+            albums: albums,
+        }});
     }
     return (
         <button className='show-gallery-btn' onClick={() => openGallery()}>Show gallery</button>
