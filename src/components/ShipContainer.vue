@@ -1,6 +1,7 @@
 <script setup>
 import {ref, onMounted} from 'vue';
 import ShipCard from './ShipCard.vue';
+
     const testShip = ref({
         name: "ShipName",
         model: "ShipModel",
@@ -8,6 +9,11 @@ import ShipCard from './ShipCard.vue';
         passengers: 1000,
         length: 150,
     });
+    
+    const currentPage = ref(1);
+    const onClickHandler = (page) => {
+        currentPage.value = page;
+    };
 </script>
 
 <template>
@@ -22,6 +28,6 @@ import ShipCard from './ShipCard.vue';
 .ship-container-wrapper {
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 </style>

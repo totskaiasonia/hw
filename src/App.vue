@@ -1,9 +1,9 @@
 <script setup>
 import {ref} from 'vue';
-import ShipCard from './components/ShipCard.vue';
 
 import { loadFull } from "tsparticles";
 import ShipContainer from './components/ShipContainer.vue';
+import ThePagination from './components/ThePagination.vue';
 
 const particlesInit = async engine => {
     await loadFull(engine);
@@ -12,14 +12,6 @@ const particlesInit = async engine => {
 const particlesLoaded = async container => {
     console.log("Particles container loaded", container);
 };
-
-const testShip = ref({
-    name: "ShipName",
-    model: "ShipModel",
-    crew: 600,
-    passengers: 1000,
-    length: 150,
-});
 </script>
 
 <template>
@@ -43,7 +35,7 @@ const testShip = ref({
               events: {
                   onClick: {
                       enable: true,
-                      mode: 'trail'
+                      mode: 'push'
                   },
                   onHover: {
                       enable: true,
@@ -80,10 +72,10 @@ const testShip = ref({
           },
           particles: {
               color: {
-                  value: '#ffebff'
+                  value: '#ffffff'
               },
               links: {
-                  color: '#8d9339',
+                  color: '#8dd339',
                   distance: 180,
                   enable: false,
                   opacity: 0.2,
@@ -135,6 +127,7 @@ const testShip = ref({
   <div class="page-container">
     <h1 class="main-title">STAR WARS CORPORATION</h1>
     <ShipContainer/>
+    <ThePagination/>
   </div>
 </template>
 
