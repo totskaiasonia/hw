@@ -1,6 +1,6 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
-import TheWelcome from './components/TheWelcome.vue';
+import {ref} from 'vue';
+import ShipCard from './components/ShipCard.vue';
 
 import { loadFull } from "tsparticles";
 
@@ -11,6 +11,14 @@ const particlesInit = async engine => {
 const particlesLoaded = async container => {
     console.log("Particles container loaded", container);
 };
+
+const testShip = ref({
+    name: "ShipName",
+    model: "ShipModel",
+    crew: 600,
+    passengers: 1000,
+    length: 150,
+});
 </script>
 
 <template>
@@ -18,7 +26,6 @@ const particlesLoaded = async container => {
             id="tsparticles"
             :particlesInit="particlesInit"
             :particlesLoaded="particlesLoaded"
-            url="http://foo.bar/particles.json"
   />
   <vue-particles
       id="tsparticles"
@@ -124,8 +131,28 @@ const particlesLoaded = async container => {
           detectRetina: true
       }"
   />
+  <div class="page-container">
+    <h1 class="main-title">STAR WARS CORPORATION</h1>
+    <ShipCard v-bind:ship="testShip"/>
+  </div>
 </template>
 
 <style scoped>
+.main-title {
+  color: #ffe919;
+  font-family: 'Tourney', sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 60px;
+}
+.page-container {
+  background: rgba(0, 0, 0, 0.432);
+  width: 80%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
 
+  transform:translate(-50%,-50%);
+  position: fixed;
+}
 </style>
