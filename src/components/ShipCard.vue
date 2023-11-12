@@ -6,10 +6,6 @@
       required: true
     }
   });
-  
-  onMounted(() => {
-    console.log(ship.ship);
-  })
 </script>
 
 <template>

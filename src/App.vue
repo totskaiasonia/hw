@@ -3,6 +3,7 @@ import {ref} from 'vue';
 import ShipCard from './components/ShipCard.vue';
 
 import { loadFull } from "tsparticles";
+import ShipContainer from './components/ShipContainer.vue';
 
 const particlesInit = async engine => {
     await loadFull(engine);
@@ -133,7 +134,7 @@ const testShip = ref({
   />
   <div class="page-container">
     <h1 class="main-title">STAR WARS CORPORATION</h1>
-    <ShipCard v-bind:ship="testShip"/>
+    <ShipContainer/>
   </div>
 </template>
 
