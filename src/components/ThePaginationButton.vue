@@ -1,20 +1,23 @@
 <script setup>
-const props = defineProps({
-    pageNumber: {
-      type: Number,
-      required: true
-    },
-    isActive: {
-        type: Boolean,
-        required: true
+
+    import { useActivePage } from '../stores/activePage';
+
+    const props = defineProps({
+        pageNumber: {
+            type: Number,
+            required: true
+        },
+        isActive: {
+            type: Boolean,
+            required: true
+        }
+    });
+
+    const store = useActivePage();
+
+    function sendClickEvent() {
+        store.page = props.pageNumber;
     }
-});
-
-const emit = defineEmits(['click-pagination-btn']);
-
-function sendClickEvent() {
-    emit('click-pagination-btn', props.pageNumber);
-}
 
 </script>
 
@@ -37,6 +40,7 @@ function sendClickEvent() {
     color: #9f9f9f;
     font-size: 25px;
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .pagination-button:hover {
@@ -46,6 +50,7 @@ function sendClickEvent() {
 .active {
     background-color: #ffe819c0;
     color: black;
+    margin-top: 0px;
 }
 
 </style>

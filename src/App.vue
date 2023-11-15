@@ -3,7 +3,6 @@ import {ref} from 'vue';
 
 import { loadFull } from "tsparticles";
 import ShipContainer from './components/ShipContainer.vue';
-import ThePagination from './components/ThePagination.vue';
 
 const particlesInit = async engine => {
     await loadFull(engine);
@@ -75,9 +74,9 @@ const particlesLoaded = async container => {
                   value: '#ffffff'
               },
               links: {
-                  color: '#8dd339',
+                  color: '#ddff4640',
                   distance: 180,
-                  enable: false,
+                  enable: true,
                   opacity: 0.2,
                   width: 1
               },
@@ -99,7 +98,7 @@ const particlesLoaded = async container => {
                       enable: true,
                       area: 1000
                   },
-                  value: 90
+                  value: 120
               },
               opacity: {
                   value: 0.7
@@ -127,7 +126,6 @@ const particlesLoaded = async container => {
   <div class="page-container">
     <h1 class="main-title">STAR WARS CORPORATION</h1>
     <ShipContainer/>
-    <ThePagination/>
   </div>
 </template>
 
@@ -140,13 +138,16 @@ const particlesLoaded = async container => {
   font-size: 60px;
 }
 .page-container {
-  background: rgba(0, 0, 0, 0.432);
-  width: 80%;
-  height: 90%;
-  top: 50%;
-  left: 50%;
+    max-width: 1144px;
+    background: rgba(0, 0, 0, 0.432);
+    width: 80%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
 
-  transform:translate(-50%,-50%);
-  position: fixed;
+    transform:translate(-50%,-50%);
+    position: fixed;
 }
+
+
 </style>
