@@ -1,34 +1,44 @@
 <script setup>
-  import {ref, onMounted} from 'vue';
+import {ref, onMounted} from 'vue';
 
-  import ShipCard from './ShipCard.vue';
-  import ThePagination from './ThePagination.vue';
+import ShipCard from './ShipCard.vue';
+import ThePagination from './ThePagination.vue';
 
-  import { useShipsStore } from "../stores/ships";
-  import { useActivePage } from '../stores/activePage';
+import { useShipsStore } from "../stores/ships";
+import { useActivePage } from '../stores/activePage';
 
-  import { hide, show } from 'uspin';
+import { show } from 'uspin';
 
-  
-  const store = useShipsStore();
-  store.getShips();
 
-  const activePageStore = useActivePage();
+const shipsStore = useShipsStore();
+shipsStore.getShips();
 
-  const spinnerTarget = ref(null);
+const activePageStore = useActivePage();
 
-  onMounted(() => {
-    show(spinnerTarget.value, { logoColor: '#ffe819', size: '10em', opacity: '1'});
-  });
+const spinnerTarget = ref(null);
+
+onMounted(() => {
+  	show(spinnerTarget.value, { logoColor: '#ffe819', size: '10em', opacity: '1'});
+});
+
+
+const emit = defineEmits(['showPilots']);
+
+const showPilots = () => {
+    emit('showPilots');
+}
 
 </script>
 
 <template>
-  <div ref="spinnerTarget" class="spinner" v-show="!store.isLoaded"></div>
-  <div class="ship-container-wrapper" v-show="store.isLoaded" v-if="store.isLoaded">
-    <ShipCard v-for="i in 3" :key="i+(activePageStore.page-1)*3-1" :ship="store.ships[i+(activePageStore.page-1)*3-1]"/>
-  </div>
-  <ThePagination class="pagination"/>
+	<div ref="spinnerTarget" class="spinner" v-show="!shipsStore.isLoaded"></div>
+	<div class="ship-container-wrapper" v-if="shipsStore.isLoaded">
+		<ShipCard
+			v-for="i in 3" :key="i+(activePageStore.page-1)*3-1" 
+			:ship="shipsStore.ships[i+(activePageStore.page-1)*3-1]" :is-active="shipsStore.ships[i+(activePageStore.page-1)*3-1].pilots.length > 0"
+			@show-pilots="showPilots"/>
+	</div>
+	<ThePagination class="pagination"/>
 </template>
 
 <style scoped>
@@ -47,6 +57,6 @@
 }
 
 .spinner {
-  margin-top: 30vh;
+ 	margin-top: 30vh;
 }
 </style>

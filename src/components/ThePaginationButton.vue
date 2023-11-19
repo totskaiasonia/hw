@@ -1,23 +1,23 @@
 <script setup>
 
-    import { useActivePage } from '../stores/activePage';
+import { useActivePage } from '../stores/activePage';
 
-    const props = defineProps({
-        pageNumber: {
-            type: Number,
-            required: true
-        },
-        isActive: {
-            type: Boolean,
-            required: true
-        }
-    });
-
-    const store = useActivePage();
-
-    function sendClickEvent() {
-        store.page = props.pageNumber;
+const props = defineProps({
+    pageNumber: {
+        type: Number,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        required: true
     }
+});
+
+const store = useActivePage();
+
+function sendClickEvent() {
+    store.page = props.pageNumber;
+}
 
 </script>
 

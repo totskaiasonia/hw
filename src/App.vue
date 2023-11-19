@@ -2,24 +2,37 @@
 import {ref} from 'vue';
 
 import { loadFull } from "tsparticles";
+
 import ShipContainer from './components/ShipContainer.vue';
+import PilotsModal from './components/PilotsModal.vue';
+
 
 const particlesInit = async engine => {
     await loadFull(engine);
 };
 
 const particlesLoaded = async container => {
-    console.log("Particles container loaded", container);
 };
+
+const modalIsOpened = ref(false);
+
+const closeModal = () => {
+    modalIsOpened.value = false;
+}
+
+const showModal = () => {
+    modalIsOpened.value = true;
+}
+
 </script>
 
 <template>
-  <vue-particles
+    <vue-particles
             id="tsparticles"
             :particlesInit="particlesInit"
             :particlesLoaded="particlesLoaded"
-  />
-  <vue-particles
+    />
+    <vue-particles
       id="tsparticles"
       :particlesInit="particlesInit"
       :particlesLoaded="particlesLoaded"
@@ -122,20 +135,24 @@ const particlesLoaded = async container => {
           },
           detectRetina: true
       }"
-  />
-  <div class="page-container">
-    <h1 class="main-title">STAR WARS CORPORATION</h1>
-    <ShipContainer/>
-  </div>
+    />
+    <div class="page-container">
+        <h1 class="main-title">STAR WARS CORPORATION</h1>
+        <ShipContainer @showPilots="showModal"/>
+    </div>
+    <PilotsModal 
+        @closeModal="closeModal"
+        v-if="modalIsOpened"
+        :is-opened="modalIsOpened"/>
 </template>
 
 <style scoped>
 .main-title {
-  color: #ffe919;
-  font-family: 'Tourney', sans-serif;
-  font-weight: 100;
-  font-style: italic;
-  font-size: 60px;
+    color: #ffe919;
+    font-family: 'Tourney', sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 60px;
 }
 .page-container {
     max-width: 1144px;

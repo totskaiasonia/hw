@@ -1,13 +1,11 @@
 <script setup>
-    import {ref, onMounted} from 'vue';
+import ThePaginationButton from './ThePaginationButton.vue';
 
-    import ThePaginationButton from './ThePaginationButton.vue';
+import { useShipsStore } from '../stores/ships';
+import { useActivePage } from '../stores/activePage';
 
-    import { useShipsStore } from '../stores/ships';
-    import { useActivePage } from '../stores/activePage';
-
-    const pageStore = useActivePage();
-    const shipsStore = useShipsStore();
+const shipsStore = useShipsStore();
+const pageStore = useActivePage();
 </script>
 
 <template>

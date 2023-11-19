@@ -1,4 +1,3 @@
-import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useShipsStore = defineStore('ships', {
@@ -15,7 +14,6 @@ export const useShipsStore = defineStore('ships', {
                     try {
                         let data = await fetch(url);
                         let jsonData = await data.json();
-                        console.log(jsonData);
                         this.ships = this.ships.concat(jsonData.results);
                         url = jsonData.next;
                         if (!url) break;
@@ -24,7 +22,6 @@ export const useShipsStore = defineStore('ships', {
                     }
                 }
                 this.isLoaded = true;
-                console.log(this.ships);
             }
         }
     }
